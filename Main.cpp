@@ -19,7 +19,7 @@ using std::string;
 using std::stringstream;
 using namespace std;
 int main(int argc, char* argv[]){
-	vector<persona*> lista;
+	vector<persona*> listaPersonas;
 	vector<Evidencias*>listaevidencias;
 	int op=0;
 	while(op!=5){
@@ -69,11 +69,11 @@ int main(int argc, char* argv[]){
 				cin>>Nickname;
 				cout<<"Ingrese su Contraseña";
 				cin>>Contrasena;
-				for (int i = 0; i < lista.size(); ++i)
+				for (int i = 0; i < listaPersonas.size(); ++i)
 				{
-					if (dynamic_cast<Investigador*>(lista.at(i)))
+					if (dynamic_cast<Investigador*>(listaPersonas.at(i)))
 					{
-						if (lista.at(i)->getContrasena()==Contrasena&&lista.at(i)->getNickname()==Nickname)
+						if (listaPersonas.at(i)->getContrasena()==Contrasena&&listaPersonas.at(i)->getNickname()==Nickname)
 						{
 							int OpcionEvidencia=0;
 							do{
