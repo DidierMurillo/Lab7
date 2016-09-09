@@ -1,9 +1,7 @@
-//#include "personas.h"
 #include "Homicidio.h"
 #include "Secuestros.h"
 #include "Casos.h"
 #include "Evidencias.h"
-//#include "personas.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -17,5 +15,5 @@ using std::string;
 using std::stringstream;
 
 int main(int argc, char* argv[]){
-	
+
 }	
