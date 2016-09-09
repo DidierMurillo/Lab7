@@ -46,7 +46,7 @@ int main(int argc, char* argv[]){
 						cout<<"Contraseña: ";
 						cin>>contrasena;
 						cout<<"Cedula: ";
-						cin>>
+						//cin>>
 						switch(opIngreso){
 							case 1:{
 
