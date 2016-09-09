@@ -19,8 +19,8 @@ using std::string;
 using std::stringstream;
 using namespace std;
 int main(int argc, char* argv[]){
-
 	vector<persona*> listaPersona;
+	vector<Evidencias*>listaevidencias;
 	int op=0;
 	while(op!=5){
 		cout<<"****************************************"<<endl;
@@ -39,7 +39,6 @@ int main(int argc, char* argv[]){
 						cout<<"1.-Personal Administrativo."<<endl<<"2.-Investigador."<<endl<<"3.-Forense"<<endl<<"...";
 						cin>>opIngreso;
 						string nombre,nickname,contrasena,cedula,fechaNacimiento;
-						int edad;
 						cout<<"Nombre: ";
 						cin>>nombre;
 						cout<<"Nick name: ";
@@ -50,8 +49,6 @@ int main(int argc, char* argv[]){
 						cin>>cedula;
 						cout<<"Fecha de nacimiento: ";
 						cin>>fechaNacimiento;
-						cout<<"Edad: ";
-						cin>>edad;
 						switch(opIngreso){
 							case 1:{
 								string clave,puesto;
@@ -59,32 +56,11 @@ int main(int argc, char* argv[]){
 								cin>>clave;
 								cout<<"Puesto del organigrama: ";
 								cin>>puesto;
-								listaPersona.push_back(new Administrativo(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,clave,puesto));
 								break;
 							}
-							case 2:{
-								int casosAtendidos,casosCerrados,CasosSinAtender;
-								cout<<"Numero de casos atendidos: ";
-								cin>>casosAtendidos;
-								cout<<"Numero de casos cerrados: ";
-								cin>>casosCerrados;
-								cout<<"Numero de casos sin atender: ";
-								cin>>CasosSinAtender;
-								listaPersona.push_back(new Investigador(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,casosAtendidos,casosCerrados,CasosSinAtender));
-								break;
-							}
-							case 3:{
-								string fechaIngreso,horario;
-								cout<<"Fecha de ingreso: ";
-								cin>>fechaIngreso;
-								cout<<"Horario de trabajo: ";
-								cin>>horario;
-								listaPersona.push_back(new Forense(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,fechaIngreso,horario));
-								break;
-							}
-						}//fin de ingreso
-						break;
+						}
 					}
+
 					case 2:{
 						cout<<"--------MODIFICAR--------"<<endl;
 						if (listaPersona.size()>0)
@@ -208,11 +184,73 @@ int main(int argc, char* argv[]){
 						}
 						break;
 					}
+				break;
+			}case 2:{				
+				string Contrasena,Nickname;
+				cout<<"Ingrese su Nickname";
+				cin>>Nickname;
+				cout<<"Ingrese su Contraseña";
+				cin>>Contrasena;
+				for (int i = 0; i < listaPersona.size(); ++i)
+				{
+					if (dynamic_cast<Investigador*>(listaPersona.at(i)))
+					{
+						if (listaPersona.at(i)->getContrasena()==Contrasena&&listaPersona.at(i)->getNickname()==Nickname)
+						{
+							int OpcionEvidencia=0;
+							do{
+								cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
+								switch(OpcionEvidencia){
+									case 1:{
+										//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
+										string Nombre,Lugar,TipoArma,Temporal;
+										bool Huellas=false,Procesada=false;
+										cout<<"Nombre del Caso:";
+										cin>>Nombre;
+										cout<<"Lugar del Caso:";
+										cin>>Lugar;
+										int OpcionArma;
+										do{
+											cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
+											cin>>OpcionArma;
+											if (OpcionArma==1)
+											{
+												TipoArma="Arma Blanca";
+											}else if(OpcionArma==2){
+												TipoArma="Arma de Fuego";
+											}else if(OpcionArma==3){
+												TipoArma="Evidencias Circunstanciales";
+											}
+										}	
+										while(OpcionArma==1||OpcionArma==2||OpcionArma==3);
+										cout<<"Hay Huellas Digitales? [S/N]";
+										cin>>Temporal;
+										if (Temporal=="S"||Temporal=="s")
+										{
+											Huellas=true;
+											cout<<"Estan siendo procesadas? [S/N]";
+											cin>>Temporal;
+											if (Temporal=="S"||Temporal=="s")
+											{
+												Procesada=true;
+											}
+										}
+										listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
+										break;
+									}
+								}
+							}while(OpcionEvidencia!=4);
+						}
+
+					}
 				}
 				break;
 			}
-			
-		}
-	}
+		}//CIEREE SWITCH PRINCIPAL
 
-}	
+	}//CIERE DEL WHILE
+}
+}
+
+
+
