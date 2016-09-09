@@ -6,7 +6,6 @@
 #include "Secuestros.h"
 #include "Casos.h"
 #include "Evidencias.h"
-//#include "personas.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,6 +19,7 @@ using std::string;
 using std::stringstream;
 using namespace std;
 int main(int argc, char* argv[]){
+
 	vector<persona*> lista;
 	int op=0;
 	while(op!=5){
@@ -66,4 +66,5 @@ int main(int argc, char* argv[]){
 			
 		}
 	}
+
 }	

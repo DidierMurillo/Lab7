@@ -11,7 +11,7 @@ public:
 	string getClave();
 	string getPuesto();
 	virtual string toString()const;
-	Administrativo::Administrativo(string,string,string,string,int,string,string,string);
+	Administrativo(string,string,string,string,int,string,string,string);
 	virtual~Administrativo();
 	
 };
