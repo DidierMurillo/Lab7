@@ -1,5 +1,4 @@
 #include <string>
-#include <sstream>
 #include <vector>
 #include "Casos.h"
 using std::string;
