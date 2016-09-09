@@ -46,10 +46,16 @@ int main(int argc, char* argv[]){
 						cout<<"Contraseña: ";
 						cin>>contrasena;
 						cout<<"Cedula: ";
-						cin>>
+						cin>>cedula;
+						cout<<"Fecha de nacimiento: ";
+						cin>>fechaNacimiento;
 						switch(opIngreso){
 							case 1:{
-
+								string clave,puesto;
+								cout<<"Clave de ingreso: ";
+								cin>>clave;
+								cout<<"Puesto del organigrama: ";
+								cin>>puesto;
 								break;
 							}
 						}
