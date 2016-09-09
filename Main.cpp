@@ -207,75 +207,72 @@ int main(int argc, char* argv[]){
 							cout<<"No hay personas agregadas"<<endl;
 						}
 						break;
-
 					}
+				}
 				break;
-
-			}case 2:{				
-				string Contrasena,Nickname;
-				cout<<"Ingrese su Nickname";
-				cin>>Nickname;
-				cout<<"Ingrese su Contraseña";
-				cin>>Contrasena;
-				for (int i = 0; i < listaPersona.size(); ++i)
-				{
-					if (dynamic_cast<Investigador*>(listaPersona.at(i)))
+				case 2:{				
+					string Contrasena,Nickname;
+					cout<<"Ingrese su Nickname";
+					cin>>Nickname;
+					cout<<"Ingrese su Contraseña";
+					cin>>Contrasena;
+					for (int i = 0; i < listaPersona.size(); ++i)
 					{
-						if (listaPersona.at(i)->getContrasena()==Contrasena&&listaPersona.at(i)->getNickname()==Nickname)
+						if (dynamic_cast<Investigador*>(listaPersona.at(i)))
 						{
-							int OpcionEvidencia=0;
-							do{
-								cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
-								switch(OpcionEvidencia){
-									case 1:{
-										//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
-										string Nombre,Lugar,TipoArma,Temporal;
-										bool Huellas=false,Procesada=false;
-										cout<<"Nombre del Caso:";
-										cin>>Nombre;
-										cout<<"Lugar del Caso:";
-										cin>>Lugar;
-										int OpcionArma;
-										do{
-											cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
-											cin>>OpcionArma;
-											if (OpcionArma==1)
-											{
-												TipoArma="Arma Blanca";
-											}else if(OpcionArma==2){
-												TipoArma="Arma de Fuego";
-											}else if(OpcionArma==3){
-												TipoArma="Evidencias Circunstanciales";
-											}
-										}	
-										while(OpcionArma==1||OpcionArma==2||OpcionArma==3);
-										cout<<"Hay Huellas Digitales? [S/N]";
-										cin>>Temporal;
-										if (Temporal=="S"||Temporal=="s")
-										{
-											Huellas=true;
-											cout<<"Estan siendo procesadas? [S/N]";
+							if (listaPersona.at(i)->getContrasena()==Contrasena&&listaPersona.at(i)->getNickname()==Nickname)
+							{
+								int OpcionEvidencia=0;
+								do{
+									cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
+									switch(OpcionEvidencia){
+										case 1:{
+											//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
+											string Nombre,Lugar,TipoArma,Temporal;
+											bool Huellas=false,Procesada=false;
+											cout<<"Nombre del Caso:";
+											cin>>Nombre;
+											cout<<"Lugar del Caso:";
+											cin>>Lugar;
+											int OpcionArma;
+											do{
+												cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
+												cin>>OpcionArma;
+												if (OpcionArma==1)
+												{
+													TipoArma="Arma Blanca";
+												}else if(OpcionArma==2){
+													TipoArma="Arma de Fuego";
+												}else if(OpcionArma==3){
+													TipoArma="Evidencias Circunstanciales";
+												}
+											}	
+											while(OpcionArma==1||OpcionArma==2||OpcionArma==3);
+											cout<<"Hay Huellas Digitales? [S/N]";
 											cin>>Temporal;
 											if (Temporal=="S"||Temporal=="s")
 											{
-												Procesada=true;
+												Huellas=true;
+												cout<<"Estan siendo procesadas? [S/N]";
+												cin>>Temporal;
+												if (Temporal=="S"||Temporal=="s")
+												{
+													Procesada=true;
+												}
 											}
+											listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
+											break;
 										}
-										listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
-										break;
 									}
-								}
-							}while(OpcionEvidencia!=4);
+								}while(OpcionEvidencia!=4);
+							}	
 						}
-
 					}
 				}
 				break;
 			}
 		}//CIEREE SWITCH PRINCIPAL
-
 	}//CIERE DEL WHILE
-}
 }
 
 
