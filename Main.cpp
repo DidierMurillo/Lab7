@@ -39,6 +39,7 @@ int main(int argc, char* argv[]){
 						cout<<"1.-Personal Administrativo."<<endl<<"2.-Investigador."<<endl<<"3.-Forense"<<endl<<"...";
 						cin>>opIngreso;
 						string nombre,nickname,contrasena,cedula,fechaNacimiento;
+						int edad;
 						cout<<"Nombre: ";
 						cin>>nombre;
 						cout<<"Nick name: ";
@@ -49,6 +50,8 @@ int main(int argc, char* argv[]){
 						cin>>cedula;
 						cout<<"Fecha de nacimiento: ";
 						cin>>fechaNacimiento;
+						cout<<"Edad: ";
+						cin>>edad;
 						switch(opIngreso){
 							case 1:{
 								string clave,puesto;
@@ -56,11 +59,32 @@ int main(int argc, char* argv[]){
 								cin>>clave;
 								cout<<"Puesto del organigrama: ";
 								cin>>puesto;
+								listaPersona.push_back(new Administrativo(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,clave,puesto));
 								break;
 							}
-						}
+							case 2:{
+								int casosAtendidos,casosCerrados,CasosSinAtender;
+								cout<<"Numero de casos atendidos: ";
+								cin>>casosAtendidos;
+								cout<<"Numero de casos cerrados: ";
+								cin>>casosCerrados;
+								cout<<"Numero de casos sin atender: ";
+								cin>>CasosSinAtender;
+								listaPersona.push_back(new Investigador(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,casosAtendidos,casosCerrados,CasosSinAtender));
+								break;
+							}
+							case 3:{
+								string fechaIngreso,horario;
+								cout<<"Fecha de ingreso: ";
+								cin>>fechaIngreso;
+								cout<<"Horario de trabajo: ";
+								cin>>horario;
+								listaPersona.push_back(new Forense(nombre,nickname,contrasena,cedula,edad,fechaNacimiento,fechaIngreso,horario));
+								break;
+							}
+						}//fin de ingreso
+						break;
 					}
-
 					case 2:{
 						cout<<"--------MODIFICAR--------"<<endl;
 						if (listaPersona.size()>0)
@@ -183,10 +207,12 @@ int main(int argc, char* argv[]){
 							cout<<"No hay personas agregadas"<<endl;
 						}
 						break;
+
 					}
 				break;
+
 			}case 2:{				
-				string Contrasena,Nickname;
+				/*string Contrasena,Nickname;
 				cout<<"Ingrese su Nickname";
 				cin>>Nickname;
 				cout<<"Ingrese su Contraseña";
@@ -244,7 +270,7 @@ int main(int argc, char* argv[]){
 
 					}
 				}
-				break;
+				break;*/
 			}
 		}//CIEREE SWITCH PRINCIPAL
 

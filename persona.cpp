@@ -53,6 +53,6 @@ persona::~persona(){
 }
 string persona::toString()const{
         stringstream ss;
-        ss << "Persona-> "<<"Nombre: "<<nombre<<" Nickname: "<<nickname<<" contraseña: "<<contrasena<<" Cedula: "<<cedula<<"Edad: "<<edad<<"Fecha de Nacimiento: "<<fechaNacimiento;
+        ss <<"Nombre: "<<nombre<<" Nickname: "<<nickname<<" contraseña: "<<contrasena<<" Cedula: "<<cedula<<"Edad: "<<edad<<"Fecha de Nacimiento: "<<fechaNacimiento;
         return ss.str();
 }
