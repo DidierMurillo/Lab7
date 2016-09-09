@@ -17,6 +17,5 @@ using std::string;
 using std::stringstream;
 
 int main(int argc, char* argv[]){
-
-
+	
 }	
