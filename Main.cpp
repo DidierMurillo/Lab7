@@ -209,74 +209,124 @@ int main(int argc, char* argv[]){
 						break;
 
 					}
+				}
 				break;
-
 			}case 2:{				
-				/*string Contrasena,Nickname;
+				string Contrasena,Nickname;
 				cout<<"Ingrese su Nickname";
 				cin>>Nickname;
 				cout<<"Ingrese su Contraseña";
 				cin>>Contrasena;
 				for (int i = 0; i < listaPersona.size(); ++i)
-				{
-					if (dynamic_cast<Investigador*>(listaPersona.at(i)))
 					{
-						if (listaPersona.at(i)->getContrasena()==Contrasena&&listaPersona.at(i)->getNickname()==Nickname)
+						if (dynamic_cast<Investigador*>(listaPersona.at(i)))
 						{
-							int OpcionEvidencia=0;
-							do{
-								cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
-								switch(OpcionEvidencia){
-									case 1:{
-										//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
-										string Nombre,Lugar,TipoArma,Temporal;
-										bool Huellas=false,Procesada=false;
-										cout<<"Nombre del Caso:";
-										cin>>Nombre;
-										cout<<"Lugar del Caso:";
-										cin>>Lugar;
-										int OpcionArma;
-										do{
-											cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
-											cin>>OpcionArma;
-											if (OpcionArma==1)
-											{
-												TipoArma="Arma Blanca";
-											}else if(OpcionArma==2){
-												TipoArma="Arma de Fuego";
-											}else if(OpcionArma==3){
-												TipoArma="Evidencias Circunstanciales";
-											}
-										}	
-										while(OpcionArma==1||OpcionArma==2||OpcionArma==3);
-										cout<<"Hay Huellas Digitales? [S/N]";
-										cin>>Temporal;
-										if (Temporal=="S"||Temporal=="s")
-										{
-											Huellas=true;
-											cout<<"Estan siendo procesadas? [S/N]";
+							if (listaPersona.at(i)->getContrasena()==Contrasena&&listaPersona.at(i)->getNickname()==Nickname)
+							{
+								int OpcionEvidencia=0;
+								do{
+									cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
+									cin>>OpcionEvidencia;
+									switch(OpcionEvidencia){
+										case 1:{
+											//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
+											string Nombre,Lugar,TipoArma,Temporal;
+											bool Huellas=false,Procesada=false;
+											cout<<"Nombre del Caso:";
+											cin>>Nombre;
+											cout<<"Lugar del Caso:";
+											cin>>Lugar;
+											int OpcionArma;
+											do{
+												cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"4.-Salir";
+												cin>>OpcionArma;
+												if (OpcionArma==1)
+												{
+													TipoArma="Arma Blanca";
+												}else if(OpcionArma==2){
+													TipoArma="Arma de Fuego";
+												}else if(OpcionArma==3){
+													TipoArma="Evidencias Circunstanciales";
+												}
+											}	
+											while(OpcionArma!=1&&OpcionArma!=2&&OpcionArma!=3);
+											cout<<"Hay Huellas Digitales? [S/N]";
 											cin>>Temporal;
 											if (Temporal=="S"||Temporal=="s")
 											{
-												Procesada=true;
+												Huellas=true;
+												cout<<"Estan siendo procesadas? [S/N]";
+												cin>>Temporal;
+												if (Temporal=="S"||Temporal=="s")
+												{
+													Procesada=true;
+												}
 											}
+											listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
+											break;
+										}case 2:{
+											for (int i = 0; i < listaevidencias.size(); ++i)
+											{
+												cout<<"Numero de Evidencia:"<<i<<" "<<listaevidencias.at(i)->toString()<<"\n";
+											}
+											cout<<"Ingrese que Evidencia desea modificar";
+											int OpcionModificadar=0;
+											cin>>OpcionModificadar;
+											string Nombre,Lugar,TipoArma,Temporal;
+											bool Huellas=false,Procesada=false;
+											cout<<"Que desea MODIFICAR 1:Nombre \n2:Lugar\n 3:TipoArma";
+											cin>>OpcionModificadar;
+											if (OpcionModificadar==1)
+											{
+												cout<<"Nombre del Caso:";
+												cin>>Nombre;
+												listaevidencias.at(OpcionModificadar)->setNombre(Nombre);
+											
+											}else if(OpcionModificadar==2){
+												cout<<"Lugar del Caso:";
+												cin>>Lugar;
+												listaevidencias.at(OpcionModificadar)->setLugar(Lugar);
+											}else if(OpcionModificadar==3){
+												int OpcionArma;
+												do{
+													cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
+													cin>>OpcionArma;
+													if (OpcionArma==1)
+													{
+														TipoArma="Arma Blanca";
+													}else if(OpcionArma==2){
+														TipoArma="Arma de Fuego";
+													}else if(OpcionArma==3){
+														TipoArma="Evidencias Circunstanciales";
+													}
+													listaevidencias.at(OpcionModificadar)->setTipoArma(TipoArma);
+
+												}while(OpcionArma!=1&&OpcionArma!=2&&OpcionArma!=3);
+											}
+
+											break;
+										}case 3:{
+											for (int i = 0; i < listaevidencias.size(); ++i)
+											{
+												cout<<"Numero de Evidencia:"<<i<<" "<<listaevidencias.at(i)->toString()<<"\n";
+											}
+											cout<<"Ingrese que Evidencia desea modificar";
+											int OpcionModificadar=0;
+											cin>>OpcionModificadar;
+											listaevidencias.erase(listaevidencias.begin()+OpcionModificadar);
 										}
-										listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
 										break;
 									}
-								}
-							}while(OpcionEvidencia!=4);
+								}while(OpcionEvidencia!=4);
+							}	
 						}
-
 					}
 				}
-				break;*/
+				break;
 			}
 		}//CIEREE SWITCH PRINCIPAL
-
 	}//CIERE DEL WHILE
-}
-}
+
 
 
 
