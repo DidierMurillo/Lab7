@@ -87,115 +87,125 @@ int main(int argc, char* argv[]){
 					}
 					case 2:{
 						cout<<"--------MODIFICAR--------"<<endl;
-						int opM;
-						for (int i = 0; i < listaPersona.size(); i++)
-                        {
-	                        if (dynamic_cast<Administrativo*>(listaPersona[i])!=NULL){
-                                Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                            if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
-                                Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                            if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
-                                Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                        }
-                        cin>>opM;
-                        opM--;
-                        string nombre,nickname,contrasena,cedula,fechaNacimiento;
-						int edad;
-						cout<<"Nombre: ";
-						cin>>nombre;
-						cout<<"Nick name: ";
-						cin>>nickname;
-						cout<<"Contraseña: ";
-						cin>>contrasena;
-						cout<<"Cedula: ";
-						cin>>cedula;
-						cout<<"Fecha de nacimiento: ";
-						cin>>fechaNacimiento;
-						cout<<"Edad: ";
-						cin>>edad;
-                        if (dynamic_cast<Administrativo*>(listaPersona[opM])!=NULL){
-                            Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[opM]);
-                            string clave,puesto;
-							cout<<"Clave de ingreso: ";
-							cin>>clave;
-							cout<<"Puesto del organigrama: ";
-							cin>>puesto;
-							tem->setNombre(nombre);
-							tem->setNickname(nickname);
-							tem->setContrasena(contrasena);
-							tem->setCedula(cedula);
-							tem->setFechaNacimiento(fechaNacimiento);
-							tem->setEdad(edad);
-							tem->setClave(clave);
-							tem->setPuesto(puesto);
-                            listaPersona[opM]=tem;
-                        }
-                        if (dynamic_cast<Investigador*>(listaPersona[opM])!=NULL){
-                            Investigador* tem=dynamic_cast<Investigador*>(listaPersona[opM]);
-                         	int casosAtendidos,casosCerrados,casosSinAtender;
-							cout<<"Numero de casos atendidos: ";
-							cin>>casosAtendidos;
-							cout<<"Numero de casos cerrados: ";
-							cin>>casosCerrados;
-							cout<<"Numero de casos sin atender: ";
-							cin>>casosSinAtender;
-							tem->setNombre(nombre);
-							tem->setNickname(nickname);
-							tem->setContrasena(contrasena);
-							tem->setCedula(cedula);
-							tem->setFechaNacimiento(fechaNacimiento);
-							tem->setEdad(edad);
-							tem->setCasosAtendidos(casosAtendidos);
-							tem->setCasosSinResolver(casosSinAtender);
-							tem->setCasosCerrados(casosCerrados);
-							listaPersona[opM]=tem;
-                        }
-                        if (dynamic_cast<Forense*>(listaPersona[opM])!=NULL){
-                            Forense* tem=dynamic_cast<Forense*>(listaPersona[opM]);
-                            string fechaIngreso,horario;
-							cout<<"Fecha de ingreso: ";
-							cin>>fechaIngreso;
-							cout<<"Horario de trabajo: ";
-							cin>>horario;
-							tem->setNombre(nombre);
-							tem->setNickname(nickname);
-							tem->setContrasena(contrasena);
-							tem->setCedula(cedula);
-							tem->setFechaNacimiento(fechaNacimiento);
-							tem->setEdad(edad);
-							tem->setFechaIngreso(fechaIngreso);
-							tem->setHorario(horario);
-							listaPersona[opM]=tem;
-                        }
+						if (listaPersona.size()>0)
+						{
+							int opM;
+							for (int i = 0; i < listaPersona.size(); i++)
+                        	{
+	                        	if (dynamic_cast<Administrativo*>(listaPersona[i])!=NULL){
+                               	 Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[i]);
+                               	 cout<<i+1<<".-"<<tem->toString()<<endl;
+    	                        }
+        	                    if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
+            	                    Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
+                	                cout<<i+1<<".-"<<tem->toString()<<endl;
+                    	        }
+	                            if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
+    	                            Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
+        	                        cout<<i+1<<".-"<<tem->toString()<<endl;
+            	                }
+  	            	        }
+    		                cin>>opM;
+        		            opM--;
+            		        string nombre,nickname,contrasena,cedula,fechaNacimiento;
+							int edad;
+							cout<<"Nombre: ";
+							cin>>nombre;
+							cout<<"Nick name: ";
+							cin>>nickname;
+							cout<<"Contraseña: ";
+							cin>>contrasena;
+							cout<<"Cedula: ";
+							cin>>cedula;
+							cout<<"Fecha de nacimiento: ";
+							cin>>fechaNacimiento;
+							cout<<"Edad: ";
+							cin>>edad;
+                   		    if (dynamic_cast<Administrativo*>(listaPersona[opM])!=NULL){
+                   	   	     	Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[opM]);
+                   	   	    	string clave,puesto;
+								cout<<"Clave de ingreso: ";
+								cin>>clave;
+								cout<<"Puesto del organigrama: ";
+								cin>>puesto;
+								tem->setNombre(nombre);
+								tem->setNickname(nickname);
+								tem->setContrasena(contrasena);
+								tem->setCedula(cedula);
+								tem->setFechaNacimiento(fechaNacimiento);
+								tem->setEdad(edad);
+								tem->setClave(clave);
+								tem->setPuesto(puesto);
+                   	   		    listaPersona[opM]=tem;
+                   		   	}
+                	   	    if (dynamic_cast<Investigador*>(listaPersona[opM])!=NULL){
+            	       	        Investigador* tem=dynamic_cast<Investigador*>(listaPersona[opM]);
+               	    	     	int casosAtendidos,casosCerrados,casosSinAtender;
+								cout<<"Numero de casos atendidos: ";
+								cin>>casosAtendidos;
+								cout<<"Numero de casos cerrados: ";
+								cin>>casosCerrados;
+								cout<<"Numero de casos sin atender: ";
+								cin>>casosSinAtender;
+								tem->setNombre(nombre);
+								tem->setNickname(nickname);
+								tem->setContrasena(contrasena);
+								tem->setCedula(cedula);
+								tem->setFechaNacimiento(fechaNacimiento);
+								tem->setEdad(edad);
+								tem->setCasosAtendidos(casosAtendidos);
+								tem->setCasosSinResolver(casosSinAtender);
+								tem->setCasosCerrados(casosCerrados);
+								listaPersona[opM]=tem;
+                   		    }
+                    		if (dynamic_cast<Forense*>(listaPersona[opM])!=NULL){
+                       		    Forense* tem=dynamic_cast<Forense*>(listaPersona[opM]);
+                    	    	string fechaIngreso,horario;
+								cout<<"Fecha de ingreso: ";
+								cin>>fechaIngreso;
+								cout<<"Horario de trabajo: ";
+								cin>>horario;
+								tem->setNombre(nombre);
+								tem->setNickname(nickname);
+								tem->setContrasena(contrasena);
+								tem->setCedula(cedula);
+								tem->setFechaNacimiento(fechaNacimiento);
+								tem->setEdad(edad);
+								tem->setFechaIngreso(fechaIngreso);
+								tem->setHorario(horario);
+								listaPersona[opM]=tem;
+                        	}
+						}else{
+							cout<<"No hay personas agregadas"<<endl;
+						}
 						break;
 					}
 					case 3:{
 						cout<<"--------ELIMINAR--------"<<endl;
-						int opM;
-						for (int i = 0; i < listaPersona.size(); i++)
-                        {
-	                        if (dynamic_cast<Administrativo*>(listaPersona[i])!=NULL){
-                                Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                            if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
-                                Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                            if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
-                                Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
-                                cout<<i+1<<".-"<<tem->toString()<<endl;
-                            }
-                        }
-                        cin>>opM;
-                        opM--;
-                        
+						if (listaPersona.size()>0)
+						{
+							int opM;
+							for (int i = 0; i < listaPersona.size(); i++)
+                        	{
+	                        	if (dynamic_cast<Administrativo*>(listaPersona[i])!=NULL){
+                                	Administrativo* tem=dynamic_cast<Administrativo*>(listaPersona[i]);
+                                	cout<<i+1<<".-"<<tem->toString()<<endl;
+                            	}
+                            	if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
+                                	Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
+                                	cout<<i+1<<".-"<<tem->toString()<<endl;
+                            	}
+                            	if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
+                                	Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
+                                	cout<<i+1<<".-"<<tem->toString()<<endl;
+                            	}
+                        	}
+                        	cin>>opM;
+                        	opM--;
+                        	listaPersona.erase(listaPersona.begin()+opM);
+						}else{
+							cout<<"No hay personas agregadas"<<endl;
+						}
 						break;
 					}
 				}
