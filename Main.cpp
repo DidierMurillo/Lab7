@@ -21,6 +21,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 	vector<persona*> listaPersona;
 	vector<Evidencias*>listaevidencias;
+	vector<Casos*> listaCasos;
 	int op=0;
 	while(op!=5){
 		cout<<"****************************************"<<endl;
@@ -378,7 +379,7 @@ int main(int argc, char* argv[]){
 									cin>>lugarSecuestro;
 									cout<<"Motivo: ";
 									cin>>motivo;
-									listaevidencias.push_back(new Secuestro(lugar,fecha,hora,estado,victima,lugarSecuestro,motivo));
+									listaCasos.push_back(new Secuestros(lugar,fecha,hora,estado,victima,lugarSecuestro,motivo));
                         			break;
                         		}
                         		case 2:{
@@ -386,12 +387,8 @@ int main(int argc, char* argv[]){
                         		}
                         	}
                         }
-                        if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
-                          	Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
-                          	
-                        }
-                        if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
-                           	Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
+                        if (dynamic_cast<Forense*>(listaPersona[posicion])!=NULL){
+                           	
                            	
                         }
 					}else{
