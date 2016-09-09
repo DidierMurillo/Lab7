@@ -388,9 +388,55 @@ int main(int argc, char* argv[]){
                         	}
                         }
                         if (dynamic_cast<Forense*>(listaPersona[posicion])!=NULL){
-                           	
-                           	
+                           	cout<<"------Homicidio------"<<endl;
+                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<"3.-Eliminar"<<endl<<"...";
+                        	cin>>opCasos;
+                        	switch(opCasos){
+                        		case 1:{
+                        			cout<<"------AGREGAR------"<<endl;
+                        			string lugar,fecha,hora,victima,sospechoso,lugarSecuestro;
+                        			bool estado=false;
+									cout<<"Lugar: ";
+									cin>>lugar;
+									cout<<"Fecha: ";
+									cin>>fecha;
+									cout<<"Hora: ";
+									cin>>hora;
+									char tem;
+									do
+									{
+										
+										cout<<"El caso esta abierto (s/n): ";
+										cin>>tem;
+
+									} while (tem!='s' && tem!='n');
+									if (tem=='s')
+									{
+										estado=true;
+									}
+									cout<<"Victima: ";
+									cin>>victima;
+									cout<<"Sospechoso Principal: ";
+									cin>>lugarSecuestro;
+									listaCasos.push_back(new Homicidio(lugar,fecha,hora,estado,victima,lugarSecuestro));
+									string M,N;
+									do
+									{
+										string M,N;
+										cout<<"Ingrese el nombre de un sospechoso";
+										cin>>N;
+										cout<<"Dese ingresar otro sospechosos? [S/N]";
+										cin>>M;
+
+									} while (M=="S"||M=="s");
+                        			break;
+                        		}case 2:{
+
+                        			break;
+                        		}	
+                        	}                          	
                         }
+
 					}else{
 						cout<<"El usuario no existe"<<endl;
 					}
