@@ -270,6 +270,81 @@ int main(int argc, char* argv[]){
 					}
 				}
 				break;
+				case 3:{
+					string nickname,contrasena;
+					cout<<"++++++++++++++++++++++"<<endl;
+					cout<< "Usuario: ";
+					cin>>nickname;
+					cout<<"Contraseña: ";
+					cin>>contrasena;
+					cout<<"++++++++++++++++++++++"<<endl;
+					bool bandera=false;
+					int posicion;
+					for (int i = 0; i < listaPersona.size(); i++)
+					{
+						if (listaPersona[i]->getNickname()==nickname && listaPersona[i]->getContrasena()==contrasena)
+						{
+							posicion=i;
+							bandera=true;
+							i=listaPersona.size();
+						}
+					}
+					int opCasos;
+					if (bandera)
+					{
+						if (dynamic_cast<Administrativo*>(listaPersona[posicion])!=NULL){
+                           	cout<<"------SECUESTROS------"<<endl;
+                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<"3.-Eliminar"<<endl<<"...";
+                        	cin>>opCasos;
+                        	switch(opCasos){
+                        		case 1:{
+                        			cout<<"------AGREGAR------"<<endl;
+                        			string lugar,fecha,hora,victima,lugarSecuestro,motivo;
+                        			bool estado=false;
+									cout<<"Lugar: ";
+									cin>>lugar;
+									cout<<"Fecha: ";
+									cin>>fecha;
+									cout<<"Hora: ";
+									cin>>hora;
+									char tem;
+									do
+									{
+										
+										cout<<"El caso esta abierto (s/n): ";
+										cin>>tem;
+
+									} while (tem!='s' && tem!='n');
+									if (tem=='s')
+									{
+										estado=true;
+									}
+									cout<<"Victima: ";
+									cin>>victima;
+									cout<<"Lugar del secuestro: ";
+									cin>>lugarSecuestro;
+									cout<<"Motivo: ";
+									cin>>motivo;
+									listaevidencias.push_back(new Secuestro(lugar,fecha,hora,estado,victima,lugarSecuestro,motivo));
+                        			break;
+                        		}
+                        		case 2:{
+
+                        		}
+                        	}
+                        }
+                        if (dynamic_cast<Investigador*>(listaPersona[i])!=NULL){
+                          	Investigador* tem=dynamic_cast<Investigador*>(listaPersona[i]);
+                          	
+                        }
+                        if (dynamic_cast<Forense*>(listaPersona[i])!=NULL){
+                           	Forense* tem=dynamic_cast<Forense*>(listaPersona[i]);
+                           	
+                        }
+					}else{
+						cout<<"El usuario no existe"<<endl;
+					}
+				}
 			}
 		}//CIEREE SWITCH PRINCIPAL
 	}//CIERE DEL WHILE
