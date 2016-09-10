@@ -208,16 +208,17 @@ int main(int argc, char* argv[]){
 							cout<<"No hay personas agregadas"<<endl;
 						}
 						break;
+
 					}
 				}
 				break;
-				case 2:{				
-					string Contrasena,Nickname;
-					cout<<"Ingrese su Nickname";
-					cin>>Nickname;
-					cout<<"Ingrese su Contraseña";
-					cin>>Contrasena;
-					for (int i = 0; i < listaPersona.size(); ++i)
+			}case 2:{				
+				string Contrasena,Nickname;
+				cout<<"Ingrese su Nickname";
+				cin>>Nickname;
+				cout<<"Ingrese su Contraseña";
+				cin>>Contrasena;
+				for (int i = 0; i < listaPersona.size(); ++i)
 					{
 						if (dynamic_cast<Investigador*>(listaPersona.at(i)))
 						{
@@ -226,6 +227,7 @@ int main(int argc, char* argv[]){
 								int OpcionEvidencia=0;
 								do{
 									cout<<"1.-Agregar Evidencia"<<endl<<"2.-Eliminar Evidencias"<<endl<<"3.-Modificar Evidencias"<<endl<<"...";
+									cin>>OpcionEvidencia;
 									switch(OpcionEvidencia){
 										case 1:{
 											//string Nombre,string Lugar,string TipoArma,bool Huellas,bool Procesada
@@ -237,7 +239,7 @@ int main(int argc, char* argv[]){
 											cin>>Lugar;
 											int OpcionArma;
 											do{
-												cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
+												cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"4.-Salir";
 												cin>>OpcionArma;
 												if (OpcionArma==1)
 												{
@@ -248,7 +250,7 @@ int main(int argc, char* argv[]){
 													TipoArma="Evidencias Circunstanciales";
 												}
 											}	
-											while(OpcionArma==1||OpcionArma==2||OpcionArma==3);
+											while(OpcionArma!=1&&OpcionArma!=2&&OpcionArma!=3);
 											cout<<"Hay Huellas Digitales? [S/N]";
 											cin>>Temporal;
 											if (Temporal=="S"||Temporal=="s")
@@ -263,7 +265,58 @@ int main(int argc, char* argv[]){
 											}
 											listaevidencias.push_back(new Evidencias(Nombre,Lugar,TipoArma,Huellas,Procesada));
 											break;
+										}case 2:{
+											for (int i = 0; i < listaevidencias.size(); ++i)
+											{
+												cout<<"Numero de Evidencia:"<<i<<" "<<listaevidencias.at(i)->toString()<<"\n";
+											}
+											cout<<"Ingrese que Evidencia desea modificar";
+											int OpcionModificadar=0;
+											cin>>OpcionModificadar;
+											string Nombre,Lugar,TipoArma,Temporal;
+											bool Huellas=false,Procesada=false;
+											cout<<"Que desea MODIFICAR 1:Nombre \n2:Lugar\n 3:TipoArma";
+											cin>>OpcionModificadar;
+											if (OpcionModificadar==1)
+											{
+												cout<<"Nombre del Caso:";
+												cin>>Nombre;
+												listaevidencias.at(OpcionModificadar)->setNombre(Nombre);
+											
+											}else if(OpcionModificadar==2){
+												cout<<"Lugar del Caso:";
+												cin>>Lugar;
+												listaevidencias.at(OpcionModificadar)->setLugar(Lugar);
+											}else if(OpcionModificadar==3){
+												int OpcionArma;
+												do{
+													cout<<"1.-Arma Blanca"<<endl<<"2.-Arma de Fuego"<<endl<<"3.-Evidencias Circunstanciales"<<endl<<"...";
+													cin>>OpcionArma;
+													if (OpcionArma==1)
+													{
+														TipoArma="Arma Blanca";
+													}else if(OpcionArma==2){
+														TipoArma="Arma de Fuego";
+													}else if(OpcionArma==3){
+														TipoArma="Evidencias Circunstanciales";
+													}
+													listaevidencias.at(OpcionModificadar)->setTipoArma(TipoArma);
+
+												}while(OpcionArma!=1&&OpcionArma!=2&&OpcionArma!=3);
+											}
+
+											break;
+										}case 3:{
+											for (int i = 0; i < listaevidencias.size(); ++i)
+											{
+												cout<<"Numero de Evidencia:"<<i<<" "<<listaevidencias.at(i)->toString()<<"\n";
+											}
+											cout<<"Ingrese que Evidencia desea modificar";
+											int OpcionModificadar=0;
+											cin>>OpcionModificadar;
+											listaevidencias.erase(listaevidencias.begin()+OpcionModificadar);
 										}
+										break;
 									}
 								}while(OpcionEvidencia!=4);
 							}	
@@ -412,9 +465,55 @@ int main(int argc, char* argv[]){
                         	}
                         }
                         if (dynamic_cast<Forense*>(listaPersona[posicion])!=NULL){
-                           	
-                           	
+                           	cout<<"------Homicidio------"<<endl;
+                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<"3.-Eliminar"<<endl<<"...";
+                        	cin>>opCasos;
+                        	switch(opCasos){
+                        		case 1:{
+                        			cout<<"------AGREGAR------"<<endl;
+                        			string lugar,fecha,hora,victima,sospechoso,lugarSecuestro;
+                        			bool estado=false;
+									cout<<"Lugar: ";
+									cin>>lugar;
+									cout<<"Fecha: ";
+									cin>>fecha;
+									cout<<"Hora: ";
+									cin>>hora;
+									char tem;
+									do
+									{
+										
+										cout<<"El caso esta abierto (s/n): ";
+										cin>>tem;
+
+									} while (tem!='s' && tem!='n');
+									if (tem=='s')
+									{
+										estado=true;
+									}
+									cout<<"Victima: ";
+									cin>>victima;
+									cout<<"Sospechoso Principal: ";
+									cin>>lugarSecuestro;
+									listaCasos.push_back(new Homicidio(lugar,fecha,hora,estado,victima,lugarSecuestro));
+									string M,N;
+									do
+									{
+										string M,N;
+										cout<<"Ingrese el nombre de un sospechoso";
+										cin>>N;
+										cout<<"Dese ingresar otro sospechosos? [S/N]";
+										cin>>M;
+
+									} while (M=="S"||M=="s");
+                        			break;
+                        		}case 2:{
+
+                        			break;
+                        		}	
+                        	}                          	
                         }
+
 					}else{
 						cout<<"El usuario no existe"<<endl;
 					}
@@ -422,7 +521,7 @@ int main(int argc, char* argv[]){
 			}
 		}//CIEREE SWITCH PRINCIPAL
 	}//CIERE DEL WHILE
-}
+
 
 
 
