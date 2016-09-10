@@ -348,7 +348,7 @@ int main(int argc, char* argv[]){
 					{
 						if (dynamic_cast<Administrativo*>(listaPersona[posicion])!=NULL){
                            	cout<<"------SECUESTROS------"<<endl;
-                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<"3.-Eliminar"<<endl<<"...";
+                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<endl<<"3.-Eliminar"<<endl<<"...";
                         	cin>>opCasos;
                         	switch(opCasos){
                         		case 1:{
@@ -466,7 +466,7 @@ int main(int argc, char* argv[]){
                         }
                         if (dynamic_cast<Forense*>(listaPersona[posicion])!=NULL){
                            	cout<<"------Homicidio------"<<endl;
-                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<"3.-Eliminar"<<endl<<"...";
+                           	cout<<"1.-Agregar"<<endl<<"2.-Modificar"<<endl<<"3.-Eliminar"<<endl<<"...";
                         	cin>>opCasos;
                         	switch(opCasos){
                         		case 1:{
