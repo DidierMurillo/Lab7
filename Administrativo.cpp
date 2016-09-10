@@ -5,7 +5,8 @@ using std::string;
 using std::stringstream;
 #include "persona.h"
 #include "Administrativo.h"
-Administrativo::Administrativo(string nombre,string nickname,string contrasena,string cedula,int edad,string fechaNacimiento,string clave,string puesto):persona(nombre,nickname,contrasena,cedula,edad,fechaNacimiento),clave(clave),puesto(puesto){
+Administrativo::Administrativo(string nombre,string nickname,string contrasena,string cedula,int edad,string fechaNacimiento,
+	string clave,string puesto):persona(nombre,nickname,contrasena,cedula,edad,fechaNacimiento),clave(clave),puesto(puesto){
 
 }
 void Administrativo::setPuesto(string _puesto){

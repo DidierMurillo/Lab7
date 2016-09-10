@@ -330,7 +330,84 @@ int main(int argc, char* argv[]){
                         			break;
                         		}
                         		case 2:{
+                        			cout<<"------MODIFICAR------"<<endl;
+                        			int con=0;
+                        			for (int i = 0; i < listaCasos.size(); i++)
+                        			{
+                        				if (dynamic_cast<Secuestros*>(listaCasos[i])!=NULL)
+                        				{
+                        					cout<<i+1<<dynamic_cast<Secuestros*>(listaCasos[i])<<endl;
+                        					con++;
+                        				}
+                        			}
+                        			if (con>0)
+                        			{
+                        				int posicion;
+                        				cout<<"Elija caso: ";
+                        				cin>>posicion;
+                        				posicion--;
+                        				Secuestros* tem=dynamic_cast<Secuestros*>(listaCasos[posicion]);
+                        				string lugar,fecha,hora,victima,lugarSecuestro,motivo;
+                        				bool estado=false;
+										cout<<"Lugar: ";
+										cin>>lugar;
+										cout<<"Fecha: ";
+										cin>>fecha;
+										cout<<"Hora: ";
+										cin>>hora;
+										char temp;
+										do
+										{
+											
+											cout<<"El caso esta abierto (s/n): ";
+											cin>>temp;	
 
+										} while (temp!='s' && temp!='n');
+										if (temp=='s')
+										{
+											estado=true;
+										}
+										cout<<"Victima: ";
+										cin>>victima;
+										cout<<"Lugar del secuestro: ";
+										cin>>lugarSecuestro;
+										cout<<"Motivo: ";
+										cin>>motivo;
+										tem->setLugar(lugar);
+										tem->setFecha(fecha);
+										tem->setHora(hora);
+										tem->setCerrado(estado);
+										tem->setVictima(victima);
+										tem->setLugarSecuestro(lugarSecuestro);
+										tem->setMotivo(motivo);
+										listaCasos[posicion]=tem;
+                        			}else{
+                        				cout<<"No existe casos de tipo Secuestro"<<endl;
+                        			}
+                        			break;
+                        		}
+                        		case 3:{
+                        			cout<<"------ELIMINAR------"<<endl;
+                        			int con=0;
+                        			for (int i = 0; i < listaCasos.size(); i++)
+                        			{
+                        				if (dynamic_cast<Secuestros*>(listaCasos[i])!=NULL)
+                        				{
+                        					cout<<i+1<<dynamic_cast<Secuestros*>(listaCasos[i])<<endl;
+                        					con++;
+                        				}
+                        			}
+                        			if (con>0)
+                        			{
+                        				int posicion;
+                        				cout<<"Elija caso: ";
+                        				cin>>posicion;
+                        				posicion--;
+                        				listaCasos.erase(listaCasos.begin()+posicion);
+                        			}else{
+                        				cout<<"No existe casos de tipo Secuestro"<<endl;
+                        			}
+                        			break;
                         		}
                         	}
                         }
